@@ -4,6 +4,16 @@ import { Event } from '../types.ts';
  * 주어진 년도와 월의 일수를 반환합니다.
  */
 export function getDaysInMonth(year: number, month: number): number {
+  //1~ 12월이 아니면 0 return
+  if (month < 1 || month > 12) {
+    return 0;
+  }
+  // 2월인 경우 윤년 여부 확인
+  if (month === 2) {
+    return isLeapYear(year) ? 29 : 28;
+  }
+
+  // 2월이 아닌 경우 기존 로직
   return new Date(year, month, 0).getDate();
 }
 
@@ -101,4 +111,11 @@ export function formatDate(currentDate: Date, day?: number) {
     fillZero(currentDate.getMonth() + 1),
     fillZero(day ?? currentDate.getDate()),
   ].join('-');
+}
+
+/**
+ * 주어진 년도가 윤년인지 확인합니다.
+ */
+function isLeapYear(year: number): boolean {
+  return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 }
