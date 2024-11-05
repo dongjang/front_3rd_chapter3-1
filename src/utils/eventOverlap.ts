@@ -1,25 +1,42 @@
 import { Event, EventForm } from '../types';
 
 export function parseDateTime(date: string, time: string) {
+  const parsedDate = new Date(`${date}T${time}`);
+
+  if (isNaN(parsedDate.getTime()) || !time.match(/^(0[0-9]|1[0-9]|2[0-3]|[0-9]):[0-5][0-9]$/)) {
+    return 'Invalid Date';
+  }
+
   return new Date(`${date}T${time}`);
 }
 
 export function convertEventToDateRange({ date, startTime, endTime }: Event | EventForm) {
+  const start = parseDateTime(date, startTime);
+  const end = parseDateTime(date, endTime);
+
+  if (start === 'Invalid Date' || end === 'Invalid Date') {
+    return 'Invalid Date';
+  }
   return {
-    start: parseDateTime(date, startTime),
-    end: parseDateTime(date, endTime),
+    start: parseDateTime(date, startTime) as Date,
+    end: parseDateTime(date, endTime) as Date,
   };
 }
 
 export function isOverlapping(event1: Event | EventForm, event2: Event | EventForm) {
-  const { start: start1, end: end1 } = convertEventToDateRange(event1);
-  const { start: start2, end: end2 } = convertEventToDateRange(event2);
+  const dateRange1 = convertEventToDateRange(event1);
+  const dateRange2 = convertEventToDateRange(event2);
+
+  if (dateRange1 === 'Invalid Date' || dateRange2 === 'Invalid Date') {
+    return false;
+  }
+
+  const { start: start1, end: end1 } = dateRange1;
+  const { start: start2, end: end2 } = dateRange2;
 
   return start1 < end2 && start2 < end1;
 }
 
 export function findOverlappingEvents(newEvent: Event | EventForm, events: Event[]) {
-  return events.filter(
-    (event) => event.id !== (newEvent as Event).id && isOverlapping(event, newEvent)
-  );
+  return events.filter((event) => event.id === (newEvent as Event).id);
 }
