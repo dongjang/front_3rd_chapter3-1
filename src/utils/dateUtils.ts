@@ -22,14 +22,18 @@ export function getDaysInMonth(year: number, month: number): number {
  */
 export function getWeekDates(date: Date): Date[] {
   const day = date.getDay();
-  const diff = date.getDate() - day;
-  const sunday = new Date(date.setDate(diff));
+
+  //주의 첫 날 기준을 월요일로 변경
+  const diff = date.getDate() - (day === 0 ? 6 : day - 1);
+  const monday = new Date(date.setDate(diff));
   const weekDates = [];
+
   for (let i = 0; i < 7; i++) {
-    const nextDate = new Date(sunday);
-    nextDate.setDate(sunday.getDate() + i);
+    const nextDate = new Date(monday);
+    nextDate.setDate(monday.getDate() + i);
     weekDates.push(nextDate);
   }
+
   return weekDates;
 }
 
@@ -118,4 +122,26 @@ export function formatDate(currentDate: Date, day?: number) {
  */
 function isLeapYear(year: number): boolean {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+}
+
+// 요일을 입력 하면 해당 주의 날짜 반환
+export function getDateOfCurrentWeek(dayName: string) {
+  const today = new Date();
+  const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+
+  const targetDayIndex = dayNames.indexOf(
+    dayName.charAt(0).toUpperCase() + dayName.slice(1).toLowerCase()
+  );
+
+  if (targetDayIndex === -1) {
+    throw new Error('정확한 요일을 입력해 주세요.');
+  }
+
+  const todayDayIndex = today.getDay();
+  const mondayIndex = (todayDayIndex + 6) % 7;
+  const diff = targetDayIndex - mondayIndex;
+
+  const targetDate = new Date(today.setDate(today.getDate() + diff));
+
+  return targetDate;
 }
