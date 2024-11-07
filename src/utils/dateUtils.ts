@@ -137,7 +137,7 @@ export const getDateOfCurrentWeek = (dayName: string) => {
   );
 
   if (targetDayIndex === -1) {
-    return '정확한 요일을 입력해 주세요.';
+    throw new Error('정확한 요일을 입력해 주세요.');
   }
 
   const todayDayIndex = today.getDay();
