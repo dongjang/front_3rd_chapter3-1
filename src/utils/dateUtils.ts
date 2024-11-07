@@ -2,6 +2,7 @@ import { Event } from '../types.ts';
 
 /**
  * 주어진 년도와 월의 일수를 반환합니다.
+ * 변경한 순수 함수
  */
 export const getDaysInMonth = (year: number, month: number): number => {
   // 1 ~ 12월이 아니면 0 return
@@ -117,10 +118,12 @@ export const formatDate = (currentDate: Date, day?: number) => {
   ].join('-');
 };
 
+//추가한 순수 함수
+
 /**
  * 주어진 년도가 윤년인지 확인합니다.
  */
-const isLeapYear = (year: number): boolean => {
+export const isLeapYear = (year: number): boolean => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
 };
 
@@ -134,7 +137,7 @@ export const getDateOfCurrentWeek = (dayName: string) => {
   );
 
   if (targetDayIndex === -1) {
-    throw new Error('정확한 요일을 입력해 주세요.');
+    return '정확한 요일을 입력해 주세요.';
   }
 
   const todayDayIndex = today.getDay();

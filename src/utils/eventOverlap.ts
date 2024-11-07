@@ -10,6 +10,8 @@ export const parseDateTime = (date: string, time: string) => {
   return new Date(`${date}T${time}`);
 };
 
+//convertEventToDateRange, isOverlapping, findOverlappingEvents 변경
+
 export const convertEventToDateRange = ({ date, startTime, endTime }: Event | EventForm) => {
   const start = parseDateTime(date, startTime);
   const end = parseDateTime(date, endTime);
