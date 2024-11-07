@@ -72,7 +72,7 @@ const AlertDialogFooterText = ({
       <Button ref={cancelRef} onClick={handleIsOverlapDialogOpen}>
         취소
       </Button>
-      <Button colorScheme="red" onClick={handleSaveEvent} ml={3}>
+      <Button data-testid="continueButton" colorScheme="red" onClick={handleSaveEvent} ml={3}>
         계속 진행
       </Button>
     </>

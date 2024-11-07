@@ -15,7 +15,11 @@ const EventsSaveSettings = ({ notificationTime, setNotificationTime }: EventsSav
     <>
       <FormControl>
         <FormLabel>알림 설정</FormLabel>
-        <Select value={notificationTime} onChange={handleNotificationTimeChange}>
+        <Select
+          data-testid="notificationTime"
+          value={notificationTime}
+          onChange={handleNotificationTimeChange}
+        >
           {notificationOptions.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}

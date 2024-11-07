@@ -14,7 +14,7 @@ const EventsSaveDescription = ({ description, setDescription }: EventsSaveDescri
     <>
       <FormControl>
         <FormLabel>설명</FormLabel>
-        <Input value={description} onChange={handleDescriptionChange} />
+        <Input data-testid="description" value={description} onChange={handleDescriptionChange} />
       </FormControl>
     </>
   );

@@ -27,6 +27,7 @@ const EventsSaveTimeSettings = ({
           <FormLabel>시작 시간</FormLabel>
           <Tooltip label={startTimeError} isOpen={!!startTimeError} placement="top">
             <Input
+              data-testid="startTime"
               type="time"
               value={startTime}
               onChange={handleStartTimeChange}
@@ -39,6 +40,7 @@ const EventsSaveTimeSettings = ({
           <FormLabel>종료 시간</FormLabel>
           <Tooltip label={endTimeError} isOpen={!!endTimeError} placement="top">
             <Input
+              data-testid="endTime"
               type="time"
               value={endTime}
               onChange={handleEndTimeChange}

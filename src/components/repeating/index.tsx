@@ -37,7 +37,7 @@ const Repeating = ({
       <VStack width="100%">
         <FormControl>
           <FormLabel>반복 유형</FormLabel>
-          <Select value={repeatType} onChange={handleRepeatTypeChange}>
+          <Select data-testid="repeatType" value={repeatType} onChange={handleRepeatTypeChange}>
             <option value="daily">매일</option>
             <option value="weekly">매주</option>
             <option value="monthly">매월</option>
@@ -48,6 +48,7 @@ const Repeating = ({
           <FormControl>
             <FormLabel>반복 간격</FormLabel>
             <Input
+              data-testid="repeatInterval"
               type="number"
               value={repeatInterval}
               onChange={handleRepeatIntervalChange}
@@ -56,7 +57,12 @@ const Repeating = ({
           </FormControl>
           <FormControl>
             <FormLabel>반복 종료일</FormLabel>
-            <Input type="date" value={repeatEndDate} onChange={handleRepeatEndDateChange} />
+            <Input
+              data-testid="repeatEndDate"
+              type="date"
+              value={repeatEndDate}
+              onChange={handleRepeatEndDateChange}
+            />
           </FormControl>
         </HStack>
       </VStack>

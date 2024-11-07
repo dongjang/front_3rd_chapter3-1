@@ -7,17 +7,25 @@ interface FilteredEventIconButtonProps {
   event: Event;
   editEvent: (event: Event) => void;
   deleteEvent: (id: string) => Promise<void>;
+  index: number;
 }
 const FilteredEventIconButton = ({
   event,
   editEvent,
   deleteEvent,
+  index,
 }: FilteredEventIconButtonProps) => {
   return (
     <>
       <HStack>
-        <IconButton aria-label="Edit event" icon={<EditIcon />} onClick={() => editEvent(event)} />
         <IconButton
+          data-testid={`update_${index}`}
+          aria-label="Edit event"
+          icon={<EditIcon />}
+          onClick={() => editEvent(event)}
+        />
+        <IconButton
+          data-testid={`delete_${index}`}
           aria-label="Delete event"
           icon={<DeleteIcon />}
           onClick={() => deleteEvent(event.id)}

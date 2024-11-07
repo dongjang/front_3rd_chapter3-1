@@ -19,6 +19,7 @@ const NotificationIndex = ({ notifications, setNotifications }: NotificationProp
       <VStack position="fixed" top={4} right={4} spacing={2} align="flex-end">
         {notifications.map((notification, index) => (
           <NotificationItem
+            key={index}
             notification={notification}
             index={index}
             setNotifications={setNotifications}

@@ -17,7 +17,11 @@ const EventsSaveRepeatingSettings = ({
     <>
       <FormControl>
         <FormLabel>반복 설정</FormLabel>
-        <Checkbox isChecked={isRepeating} onChange={handleRepeatingChange}>
+        <Checkbox
+          data-testid="isRepeating"
+          isChecked={isRepeating}
+          onChange={handleRepeatingChange}
+        >
           반복 일정
         </Checkbox>
       </FormControl>

@@ -14,7 +14,7 @@ const EventsSaveLocation = ({ location, setLocation }: EventsSaveLocationProps) 
     <>
       <FormControl>
         <FormLabel>위치</FormLabel>
-        <Input value={location} onChange={handleLocationChange} />
+        <Input data-testid="location" value={location} onChange={handleLocationChange} />
       </FormControl>
     </>
   );

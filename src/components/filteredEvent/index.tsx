@@ -20,13 +20,14 @@ const FilteredEvent = ({
       {filteredEvents.length === 0 ? (
         <Text>검색 결과가 없습니다.</Text>
       ) : (
-        filteredEvents.map((event) => (
+        filteredEvents.map((event, index) => (
           <FilteredEventIem
             key={event.id}
             event={event}
             notifiedEvents={notifiedEvents}
             editEvent={editEvent}
             deleteEvent={deleteEvent}
+            index={index}
           />
         ))
       )}

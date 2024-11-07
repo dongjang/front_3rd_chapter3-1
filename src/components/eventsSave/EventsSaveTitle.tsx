@@ -14,7 +14,7 @@ const EventsSaveTitle = ({ title, setTitle }: EventsSaveTitleProps) => {
     <>
       <FormControl>
         <FormLabel>제목</FormLabel>
-        <Input value={title} onChange={handleTitleChange} />
+        <Input data-testid="title" value={title} onChange={handleTitleChange} />
       </FormControl>
     </>
   );

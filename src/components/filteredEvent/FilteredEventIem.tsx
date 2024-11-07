@@ -10,12 +10,14 @@ interface FilteredEventIemProps {
   notifiedEvents: string[];
   editEvent: (event: Event) => void;
   deleteEvent: (id: string) => Promise<void>;
+  index: number;
 }
 const FilteredEventIem = ({
   event,
   notifiedEvents,
   editEvent,
   deleteEvent,
+  index,
 }: FilteredEventIemProps) => {
   return (
     <>
@@ -54,7 +56,12 @@ const FilteredEventIem = ({
               {notificationOptions.find((option) => option.value === event.notificationTime)?.label}
             </Text>
           </VStack>
-          <FilteredEventIconButton event={event} editEvent={editEvent} deleteEvent={deleteEvent} />
+          <FilteredEventIconButton
+            event={event}
+            editEvent={editEvent}
+            deleteEvent={deleteEvent}
+            index={index}
+          />
         </HStack>
       </Box>
     </>

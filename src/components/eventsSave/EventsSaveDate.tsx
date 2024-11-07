@@ -13,7 +13,7 @@ const EventsSaveDate = ({ date, setDate }: EventsSaveDateProps) => {
     <>
       <FormControl>
         <FormLabel>날짜</FormLabel>
-        <Input type="date" value={date} onChange={handleDateChange} />
+        <Input data-testid="date" type="date" value={date} onChange={handleDateChange} />
       </FormControl>
     </>
   );

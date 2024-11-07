@@ -16,7 +16,7 @@ const EventsSaveCategories = ({ category, setCategory }: EventsSaveCategoriesPro
     <>
       <FormControl>
         <FormLabel>카테고리</FormLabel>
-        <Select value={category} onChange={handleCategoryChange}>
+        <Select data-testid="category" value={category} onChange={handleCategoryChange}>
           <option value="">카테고리 선택</option>
           {categories.map((cat) => (
             <option key={cat} value={cat}>
