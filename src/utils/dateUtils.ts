@@ -3,8 +3,8 @@ import { Event } from '../types.ts';
 /**
  * 주어진 년도와 월의 일수를 반환합니다.
  */
-export function getDaysInMonth(year: number, month: number): number {
-  //1~ 12월이 아니면 0 return
+export const getDaysInMonth = (year: number, month: number): number => {
+  // 1 ~ 12월이 아니면 0 return
   if (month < 1 || month > 12) {
     return 0;
   }
@@ -15,15 +15,15 @@ export function getDaysInMonth(year: number, month: number): number {
 
   // 2월이 아닌 경우 기존 로직
   return new Date(year, month, 0).getDate();
-}
+};
 
 /**
  * 주어진 날짜가 속한 주의 모든 날짜를 반환합니다.
  */
-export function getWeekDates(date: Date): Date[] {
+export const getWeekDates = (date: Date): Date[] => {
   const day = date.getDay();
 
-  //주의 첫 날 기준을 월요일로 변경
+  // 주의 첫 날 기준을 월요일로 변경
   const diff = date.getDate() - (day === 0 ? 6 : day - 1);
   const monday = new Date(date.setDate(diff));
   const weekDates = [];
@@ -35,9 +35,9 @@ export function getWeekDates(date: Date): Date[] {
   }
 
   return weekDates;
-}
+};
 
-export function getWeeksAtMonth(currentDate: Date) {
+export const getWeeksAtMonth = (currentDate: Date) => {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const daysInMonth = getDaysInMonth(year, month + 1);
@@ -63,13 +63,13 @@ export function getWeeksAtMonth(currentDate: Date) {
   }
 
   return weeks;
-}
+};
 
-export function getEventsForDay(events: Event[], date: number): Event[] {
+export const getEventsForDay = (events: Event[], date: number): Event[] => {
   return events.filter((event) => new Date(event.date).getDate() === date);
-}
+};
 
-export function formatWeek(targetDate: Date) {
+export const formatWeek = (targetDate: Date) => {
   const dayOfWeek = targetDate.getDay();
   const diffToThursday = 4 - dayOfWeek;
   const thursday = new Date(targetDate);
@@ -87,45 +87,45 @@ export function formatWeek(targetDate: Date) {
     Math.floor((thursday.getTime() - firstThursday.getTime()) / (7 * 24 * 60 * 60 * 1000)) + 1;
 
   return `${year}년 ${month}월 ${weekNumber}주`;
-}
+};
 
 /**
  * 주어진 날짜의 월 정보를 "YYYY년 M월" 형식으로 반환합니다.
  */
-export function formatMonth(date: Date): string {
+export const formatMonth = (date: Date): string => {
   const year = date.getFullYear();
   const month = date.getMonth() + 1;
   return `${year}년 ${month}월`;
-}
+};
 
 /**
  * 주어진 날짜가 특정 범위 내에 있는지 확인합니다.
  */
-export function isDateInRange(date: Date, rangeStart: Date, rangeEnd: Date): boolean {
+export const isDateInRange = (date: Date, rangeStart: Date, rangeEnd: Date): boolean => {
   return date >= rangeStart && date <= rangeEnd;
-}
+};
 
-export function fillZero(value: number, size = 2) {
+export const fillZero = (value: number, size = 2) => {
   return String(value).padStart(size, '0');
-}
+};
 
-export function formatDate(currentDate: Date, day?: number) {
+export const formatDate = (currentDate: Date, day?: number) => {
   return [
     currentDate.getFullYear(),
     fillZero(currentDate.getMonth() + 1),
     fillZero(day ?? currentDate.getDate()),
   ].join('-');
-}
+};
 
 /**
  * 주어진 년도가 윤년인지 확인합니다.
  */
-function isLeapYear(year: number): boolean {
+const isLeapYear = (year: number): boolean => {
   return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-}
+};
 
 // 요일을 입력 하면 해당 주의 날짜 반환
-export function getDateOfCurrentWeek(dayName: string) {
+export const getDateOfCurrentWeek = (dayName: string) => {
   const today = new Date();
   const dayNames = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -144,4 +144,4 @@ export function getDateOfCurrentWeek(dayName: string) {
   const targetDate = new Date(today.setDate(today.getDate() + diff));
 
   return targetDate;
-}
+};

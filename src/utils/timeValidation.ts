@@ -3,7 +3,7 @@ export interface TimeValidationResult {
   endTimeError: string | null;
 }
 
-export function getTimeErrorMessage(start: string, end: string): TimeValidationResult {
+export const getTimeErrorMessage = (start: string, end: string): TimeValidationResult => {
   if (!start || !end) {
     return { startTimeError: null, endTimeError: null };
   }
@@ -19,4 +19,4 @@ export function getTimeErrorMessage(start: string, end: string): TimeValidationR
   }
 
   return { startTimeError: null, endTimeError: null };
-}
+};
