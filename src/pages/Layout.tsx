@@ -1,5 +1,5 @@
-import { Box, Flex, useToast } from '@chakra-ui/react';
-import { useRef, useState } from 'react';
+import { Box, Flex } from '@chakra-ui/react';
+import { useRef } from 'react';
 
 import AlertDialogIndex from '../components/alertDialog/index.tsx';
 import CalendarView from '../components/calendarView/index.tsx';
@@ -10,8 +10,8 @@ import { useCalendarView } from '../hooks/useCalendarView.ts';
 import { useEventForm } from '../hooks/useEventForm.ts';
 import { useEventOperations } from '../hooks/useEventOperations.ts';
 import { useNotifications } from '../hooks/useNotifications.ts';
+import { useOverlap } from '../hooks/useOverlap.ts';
 import { useSearch } from '../hooks/useSearch.ts';
-import { Event } from '../types.ts';
 
 function Layout() {
   const {
@@ -55,11 +55,29 @@ function Layout() {
   const { view, setView, currentDate, holidays, navigate } = useCalendarView();
   const { searchTerm, filteredEvents, setSearchTerm } = useSearch(events, currentDate, view);
 
-  const [isOverlapDialogOpen, setIsOverlapDialogOpen] = useState(false);
-  const [overlappingEvents, setOverlappingEvents] = useState<Event[]>([]);
-  const cancelRef = useRef<HTMLButtonElement>(null);
+  const { isOverlapDialogOpen, setIsOverlapDialogOpen, overlappingEvents, addOrUpdateEvent } =
+    useOverlap(
+      editingEvent,
+      resetForm,
+      title,
+      date,
+      startTime,
+      endTime,
+      startTimeError,
+      endTimeError,
+      description,
+      location,
+      category,
+      isRepeating,
+      repeatType,
+      repeatInterval,
+      repeatEndDate,
+      notificationTime,
+      saveEvent,
+      events
+    );
 
-  const toast = useToast();
+  const cancelRef = useRef<HTMLButtonElement>(null);
 
   return (
     <Box w="full" h="100vh" m="auto" p={5}>
@@ -92,6 +110,7 @@ function Layout() {
           setRepeatInterval={setRepeatInterval}
           repeatEndDate={repeatEndDate}
           setRepeatEndDate={setRepeatEndDate}
+          addOrUpdateEvent={addOrUpdateEvent}
         />
         <CalendarView
           events={events}
@@ -102,12 +121,16 @@ function Layout() {
           notifiedEvents={notifiedEvents}
           filteredEvents={filteredEvents}
           holidays={holidays}
+          resetForm={resetForm}
+          setSearchTerm={setSearchTerm}
         />
         <EventSearch
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
           filteredEvents={filteredEvents}
           notifiedEvents={notifiedEvents}
+          editEvent={editEvent}
+          deleteEvent={deleteEvent}
         />
       </Flex>
 
@@ -116,6 +139,21 @@ function Layout() {
         setIsOverlapDialogOpen={setIsOverlapDialogOpen}
         cancelRef={cancelRef}
         overlappingEvents={overlappingEvents}
+        saveEvent={saveEvent}
+        editingEvent={editingEvent}
+        title={title}
+        date={date}
+        startTime={startTime}
+        endTime={endTime}
+        description={description}
+        location={location}
+        category={category}
+        isRepeating={isRepeating}
+        repeatType={repeatType}
+        repeatInterval={repeatInterval}
+        repeatEndDate={repeatEndDate}
+        notificationTime={notificationTime}
+        resetForm={resetForm}
       />
 
       {notifications.length > 0 && (
