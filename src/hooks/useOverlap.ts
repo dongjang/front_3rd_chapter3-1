@@ -1,8 +1,7 @@
 import { useToast } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Event, EventForm, RepeatType } from '../types';
-import { useEventOperations } from './useEventOperations';
 import { findOverlappingEvents } from '../utils/eventOverlap';
 
 export const useOverlap = (
