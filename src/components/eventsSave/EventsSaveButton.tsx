@@ -1,59 +1,14 @@
 import { Button } from '@chakra-ui/react';
 import React from 'react';
-import { Event } from '../../types';
+
+import { useOverlap } from '../../hooks/useOverlap';
+import { Event, EventForm, RepeatType } from '../../types';
 
 interface EventsSaveButtonProps {
-  editingEvent: Event[];
+  editingEvent: Event | null;
+  addOrUpdateEvent: () => Promise<void>;
 }
-const EventsSaveButton = ({ editingEvent }: EventsSaveButtonProps) => {
-  const addOrUpdateEvent = async () => {
-    if (!title || !date || !startTime || !endTime) {
-      toast({
-        title: '필수 정보를 모두 입력해주세요.',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
-
-    if (startTimeError || endTimeError) {
-      toast({
-        title: '시간 설정을 확인해주세요.',
-        status: 'error',
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
-
-    const eventData: Event | EventForm = {
-      id: editingEvent ? editingEvent.id : undefined,
-      title,
-      date,
-      startTime,
-      endTime,
-      description,
-      location,
-      category,
-      repeat: {
-        type: isRepeating ? repeatType : 'none',
-        interval: repeatInterval,
-        endDate: repeatEndDate || undefined,
-      },
-      notificationTime,
-    };
-
-    const overlapping = findOverlappingEvents(eventData, events);
-    if (overlapping.length > 0) {
-      setOverlappingEvents(overlapping);
-      setIsOverlapDialogOpen(true);
-    } else {
-      await saveEvent(eventData);
-      resetForm();
-    }
-  };
-
+const EventsSaveButton = ({ editingEvent, addOrUpdateEvent }: EventsSaveButtonProps) => {
   return (
     <>
       <Button data-testid="event-submit-button" onClick={addOrUpdateEvent} colorScheme="blue">

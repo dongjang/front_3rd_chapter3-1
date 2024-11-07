@@ -12,6 +12,7 @@ const EventsSaveRepeatingSettings = ({
   function handleRepeatingChange(event: React.ChangeEvent<HTMLInputElement>) {
     setIsRepeating(event.target.checked);
   }
+
   return (
     <>
       <FormControl>

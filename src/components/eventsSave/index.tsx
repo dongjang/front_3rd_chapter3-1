@@ -1,8 +1,9 @@
 import { Heading, VStack } from '@chakra-ui/react';
 import React from 'react';
 
-import { Event, RepeatType } from '../../types';
+import { Event, EventForm, RepeatType } from '../../types';
 import Repeating from '../repeating';
+import EventsSaveButton from './EventsSaveButton';
 import EventsSaveCategories from './EventsSaveCategories';
 import EventsSaveDate from './EventsSaveDate';
 import EventsSaveDescription from './EventsSaveDescription';
@@ -40,6 +41,7 @@ interface EventsSaveProps {
   setRepeatInterval: React.Dispatch<React.SetStateAction<number>>;
   repeatEndDate: string;
   setRepeatEndDate: (value: React.SetStateAction<string>) => void;
+  addOrUpdateEvent: () => Promise<void>;
 }
 
 const EventSave = ({
@@ -70,6 +72,8 @@ const EventSave = ({
   setRepeatInterval,
   repeatEndDate,
   setRepeatEndDate,
+
+  addOrUpdateEvent,
 }: EventsSaveProps) => {
   return (
     <>
@@ -111,7 +115,7 @@ const EventSave = ({
           />
         )}
 
-        {/* eventsSaveButton.tsx */}
+        <EventsSaveButton editingEvent={editingEvent} addOrUpdateEvent={addOrUpdateEvent} />
       </VStack>
     </>
   );
