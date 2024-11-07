@@ -1,14 +1,22 @@
 import { BellIcon } from '@chakra-ui/icons';
 import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 
+import FilteredEventIconButton from './FilteredEventIconButton';
 import { notificationOptions } from '../../constants';
 import { Event } from '../../types';
 
 interface FilteredEventIemProps {
   event: Event;
   notifiedEvents: string[];
+  editEvent: (event: Event) => void;
+  deleteEvent: (id: string) => Promise<void>;
 }
-const FilteredEventIem = ({ event, notifiedEvents }: FilteredEventIemProps) => {
+const FilteredEventIem = ({
+  event,
+  notifiedEvents,
+  editEvent,
+  deleteEvent,
+}: FilteredEventIemProps) => {
   return (
     <>
       <Box key={event.id} borderWidth={1} borderRadius="lg" p={3} width="100%">
@@ -46,7 +54,7 @@ const FilteredEventIem = ({ event, notifiedEvents }: FilteredEventIemProps) => {
               {notificationOptions.find((option) => option.value === event.notificationTime)?.label}
             </Text>
           </VStack>
-          {/* <FilteredEventIconButton / > */}
+          <FilteredEventIconButton event={event} editEvent={editEvent} deleteEvent={deleteEvent} />
         </HStack>
       </Box>
     </>
