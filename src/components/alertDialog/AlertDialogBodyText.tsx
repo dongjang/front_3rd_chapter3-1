@@ -6,7 +6,7 @@ interface AlertDialogBodyProps {
   overlappingEvents: Event[];
 }
 
-const AlertDialogBodText = ({ overlappingEvents }: AlertDialogBodyProps) => {
+const AlertDialogBodyText = ({ overlappingEvents }: AlertDialogBodyProps) => {
   return (
     <>
       다음 일정과 겹칩니다:
@@ -20,4 +20,4 @@ const AlertDialogBodText = ({ overlappingEvents }: AlertDialogBodyProps) => {
   );
 };
 
-export default AlertDialogBodText;
+export default AlertDialogBodyText;

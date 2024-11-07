@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-import AlertDialogBodyText from './AlertDialogBodText';
+import AlertDialogBodyText from './AlertDialogBodyText';
 import AlertDialogFooterText from './AlertDialogFooterText';
 import { Event, EventForm, RepeatType } from '../../types';
 
@@ -70,9 +70,11 @@ const AlertDialogIndex = ({
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               일정 겹침 경고
             </AlertDialogHeader>
+
             <AlertDialogBody>
               <AlertDialogBodyText overlappingEvents={overlappingEvents} />
             </AlertDialogBody>
+
             <AlertDialogFooter>
               <AlertDialogFooterText
                 setIsOverlapDialogOpen={setIsOverlapDialogOpen}
