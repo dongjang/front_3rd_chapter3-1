@@ -1,34 +1,56 @@
-import { useState } from 'react';
+import { useToast } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
-import { useEventForm } from './useEventForm';
+import { Event, EventForm, RepeatType } from '../types';
 import { useEventOperations } from './useEventOperations';
-import { Event, EventForm } from '../types';
 import { findOverlappingEvents } from '../utils/eventOverlap';
 
-export const useOverlap = (events: Event[]) => {
+export const useOverlap = (
+  editingEvent: Event | null,
+  resetForm: () => void,
+  title: string,
+  date: string,
+  startTime: string,
+  endTime: string,
+  startTimeError: string | null,
+  endTimeError: string | null,
+  description: string,
+  location: string,
+  category: string,
+  isRepeating: boolean,
+  repeatType: RepeatType,
+  repeatInterval: number,
+  repeatEndDate: string,
+  notificationTime: number,
+  saveEvent: (eventData: Event | EventForm) => Promise<void>,
+  events: Event[]
+) => {
   const [isOverlapDialogOpen, setIsOverlapDialogOpen] = useState(false);
   const [overlappingEvents, setOverlappingEvents] = useState<Event[]>([]);
 
-  const {
-    editingEvent,
-    setEditingEvent,
-    title,
-    date,
-    startTime,
-    endTime,
-    description,
-    location,
-    category,
-    isRepeating,
-    repeatType,
-    repeatInterval,
-    repeatEndDate,
-    notificationTime,
-    resetForm,
-  } = useEventForm();
-  const { saveEvent } = useEventOperations(Boolean(editingEvent), () => setEditingEvent(null));
+  const toast = useToast();
 
-  const handleOverlapping = async () => {
+  const addOrUpdateEvent = async () => {
+    if (!title || !date || !startTime || !endTime) {
+      toast({
+        title: '필수 정보를 모두 입력해주세요.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
+    if (startTimeError || endTimeError) {
+      toast({
+        title: '시간 설정을 확인해주세요.',
+        status: 'error',
+        duration: 3000,
+        isClosable: true,
+      });
+      return;
+    }
+
     const eventData: Event | EventForm = {
       id: editingEvent ? editingEvent.id : undefined,
       title,
@@ -46,7 +68,9 @@ export const useOverlap = (events: Event[]) => {
       notificationTime,
     };
 
+    console.log(eventData);
     const overlapping = findOverlappingEvents(eventData, events);
+    console.log(overlapping);
     if (overlapping.length > 0) {
       setOverlappingEvents(overlapping);
       setIsOverlapDialogOpen(true);
@@ -55,5 +79,6 @@ export const useOverlap = (events: Event[]) => {
       resetForm();
     }
   };
-  return { isOverlapDialogOpen, overlappingEvents, handleOverlapping };
+
+  return { isOverlapDialogOpen, setIsOverlapDialogOpen, addOrUpdateEvent, overlappingEvents };
 };
