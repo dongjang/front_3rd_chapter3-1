@@ -67,9 +67,7 @@ export const useOverlap = (
       notificationTime,
     };
 
-    console.log(eventData);
     const overlapping = findOverlappingEvents(eventData, events);
-    console.log(overlapping);
     if (overlapping.length > 0) {
       setOverlappingEvents(overlapping);
       setIsOverlapDialogOpen(true);
