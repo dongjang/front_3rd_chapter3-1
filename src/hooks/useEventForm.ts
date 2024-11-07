@@ -46,8 +46,8 @@ export const useEventForm = (initialEvent?: Event) => {
     setDescription('');
     setLocation('');
     setCategory('');
-    setIsRepeating(false);
-    setRepeatType('none');
+    setIsRepeating(true);
+    setRepeatType('daily');
     setRepeatInterval(1);
     setRepeatEndDate('');
     setNotificationTime(10);
