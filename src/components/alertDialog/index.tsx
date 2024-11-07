@@ -1,20 +1,37 @@
 import {
   AlertDialog,
+  AlertDialogBody,
   AlertDialogContent,
+  AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogOverlay,
 } from '@chakra-ui/react';
 import React from 'react';
 
-import { Event } from '../../types';
-import AlertDialogBody from './AlertDialogBody';
-import AlertDialogFooter from './AlertDialogFooter';
+import AlertDialogBodyText from './AlertDialogBodText';
+import AlertDialogFooterText from './AlertDialogFooterText';
+import { Event, EventForm, RepeatType } from '../../types';
 
 interface AlertDialogProps {
   isOverlapDialogOpen: boolean;
   setIsOverlapDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  cancelRef: React.RefObject<HTMLButtonElement>;
   overlappingEvents: Event[];
+  cancelRef: React.RefObject<HTMLButtonElement>;
+  saveEvent: (eventData: Event | EventForm) => Promise<void>;
+  editingEvent: Event | null;
+  title: string;
+  date: string;
+  startTime: string;
+  endTime: string;
+  description: string;
+  location: string;
+  category: string;
+  isRepeating: boolean;
+  repeatType: RepeatType;
+  repeatInterval: number;
+  repeatEndDate: string;
+  notificationTime: number;
+  resetForm: () => void;
 }
 
 const AlertDialogIndex = ({
@@ -22,23 +39,61 @@ const AlertDialogIndex = ({
   setIsOverlapDialogOpen,
   cancelRef,
   overlappingEvents,
+  saveEvent,
+  editingEvent,
+  title,
+  date,
+  startTime,
+  endTime,
+  description,
+  location,
+  category,
+  isRepeating,
+  repeatType,
+  repeatInterval,
+  repeatEndDate,
+  notificationTime,
+  resetForm,
 }: AlertDialogProps) => {
+  function handleIsOverlapDialogOpen() {
+    setIsOverlapDialogOpen(false);
+  }
   return (
     <>
       <AlertDialog
         isOpen={isOverlapDialogOpen}
         leastDestructiveRef={cancelRef}
-        onClose={() => setIsOverlapDialogOpen(false)}
+        onClose={handleIsOverlapDialogOpen}
       >
         <AlertDialogOverlay>
           <AlertDialogContent>
             <AlertDialogHeader fontSize="lg" fontWeight="bold">
               일정 겹침 경고
             </AlertDialogHeader>
-
-            {/* <AlertDialogBody/>  */}
-            <AlertDialogBody overlappingEvents={overlappingEvents} />
-            {/* <AlertDialogFooter > */}
+            <AlertDialogBody>
+              <AlertDialogBodyText overlappingEvents={overlappingEvents} />
+            </AlertDialogBody>
+            <AlertDialogFooter>
+              <AlertDialogFooterText
+                setIsOverlapDialogOpen={setIsOverlapDialogOpen}
+                cancelRef={cancelRef}
+                saveEvent={saveEvent}
+                editingEvent={editingEvent}
+                title={title}
+                date={date}
+                startTime={startTime}
+                endTime={endTime}
+                description={description}
+                location={location}
+                category={category}
+                isRepeating={isRepeating}
+                repeatType={repeatType}
+                repeatInterval={repeatInterval}
+                repeatEndDate={repeatEndDate}
+                notificationTime={notificationTime}
+                resetForm={resetForm}
+              />
+            </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialogOverlay>
       </AlertDialog>
