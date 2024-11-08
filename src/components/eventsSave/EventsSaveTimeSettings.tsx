@@ -6,9 +6,11 @@ import { getTimeErrorMessage } from '../../utils/timeValidation';
 interface EventsSaveTimeSettingsProps {
   startTimeError: string | null;
   startTime: string;
+  // eslint-disable-next-line
   handleStartTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   endTimeError: string | null;
   endTime: string;
+  // eslint-disable-next-line
   handleEndTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 

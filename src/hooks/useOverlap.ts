@@ -21,6 +21,7 @@ export const useOverlap = (
   repeatInterval: number,
   repeatEndDate: string,
   notificationTime: number,
+  // eslint-disable-next-line
   saveEvent: (eventData: Event | EventForm) => Promise<void>,
   events: Event[]
 ) => {

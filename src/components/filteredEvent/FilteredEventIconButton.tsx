@@ -5,7 +5,9 @@ import { Event } from '../../types';
 
 interface FilteredEventIconButtonProps {
   event: Event;
+  // eslint-disable-next-line
   editEvent: (event: Event) => void;
+  // eslint-disable-next-line
   deleteEvent: (id: string) => Promise<void>;
   index: number;
 }

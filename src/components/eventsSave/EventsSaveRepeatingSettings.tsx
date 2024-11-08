@@ -3,6 +3,7 @@ import React from 'react';
 
 interface EventsRepeatingSettingsProps {
   isRepeating: boolean;
+  // eslint-disable-next-line
   setIsRepeating: (value: React.SetStateAction<boolean>) => void;
 }
 const EventsSaveRepeatingSettings = ({

@@ -8,7 +8,9 @@ import { Event } from '../../types';
 interface FilteredEventIemProps {
   event: Event;
   notifiedEvents: string[];
+  // eslint-disable-next-line
   editEvent: (event: Event) => void;
+  // eslint-disable-next-line
   deleteEvent: (id: string) => Promise<void>;
   index: number;
 }

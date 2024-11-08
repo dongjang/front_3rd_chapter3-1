@@ -3,6 +3,7 @@ import React from 'react';
 
 interface EventsSaveTitleProps {
   title: string;
+  // eslint-disable-next-line
   setTitle: (value: React.SetStateAction<string>) => void;
 }
 

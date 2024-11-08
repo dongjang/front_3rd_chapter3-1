@@ -5,6 +5,7 @@ import { categories } from '../../constants';
 
 interface EventsSaveCategoriesProps {
   category: string;
+  // eslint-disable-next-line
   setCategory: (value: React.SetStateAction<string>) => void;
 }
 

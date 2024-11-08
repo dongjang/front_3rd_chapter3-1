@@ -1,7 +1,7 @@
 import { Heading, VStack } from '@chakra-ui/react';
 import React from 'react';
 
-import { Event, EventForm, RepeatType } from '../../types';
+import { Event, RepeatType } from '../../types';
 import Repeating from '../repeating';
 import EventsSaveButton from './EventsSaveButton';
 import EventsSaveCategories from './EventsSaveCategories';
@@ -16,30 +16,41 @@ import EventsSaveTitle from './EventsSaveTitle';
 interface EventsSaveProps {
   editingEvent: Event | null;
   title: string;
+  // eslint-disable-next-line
   setTitle: (value: React.SetStateAction<string>) => void;
   date: string;
+  // eslint-disable-next-line
   setDate: (value: React.SetStateAction<string>) => void;
   description: string;
+  // eslint-disable-next-line
   setDescription: (value: React.SetStateAction<string>) => void;
   location: string;
+  // eslint-disable-next-line
   setLocation: (value: React.SetStateAction<string>) => void;
   category: string;
+  // eslint-disable-next-line
   setCategory: (value: React.SetStateAction<string>) => void;
   isRepeating: boolean;
+  // eslint-disable-next-line
   setIsRepeating: (value: React.SetStateAction<boolean>) => void;
   notificationTime: number;
+  // eslint-disable-next-line
   setNotificationTime: (value: React.SetStateAction<number>) => void;
   startTimeError: string | null;
   startTime: string;
+  // eslint-disable-next-line
   handleStartTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   endTimeError: string | null;
   endTime: string;
+  // eslint-disable-next-line
   handleEndTimeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   repeatType: RepeatType;
+  // eslint-disable-next-line
   setRepeatType: (value: React.SetStateAction<RepeatType>) => void;
   repeatInterval: number;
   setRepeatInterval: React.Dispatch<React.SetStateAction<number>>;
   repeatEndDate: string;
+  // eslint-disable-next-line
   setRepeatEndDate: (value: React.SetStateAction<string>) => void;
   addOrUpdateEvent: () => Promise<void>;
 }

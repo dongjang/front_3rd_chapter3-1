@@ -17,6 +17,7 @@ interface AlertDialogProps {
   setIsOverlapDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   overlappingEvents: Event[];
   cancelRef: React.RefObject<HTMLButtonElement>;
+  // eslint-disable-next-line
   saveEvent: (eventData: Event | EventForm) => Promise<void>;
   editingEvent: Event | null;
   title: string;

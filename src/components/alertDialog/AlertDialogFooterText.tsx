@@ -6,6 +6,7 @@ import { Event, EventForm, RepeatType } from '../../types';
 interface AlertDialogFooterTextProps {
   setIsOverlapDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
   cancelRef: React.RefObject<HTMLButtonElement>;
+  // eslint-disable-next-line
   saveEvent: (eventData: Event | EventForm) => Promise<void>;
   editingEvent: Event | null;
   title: string;

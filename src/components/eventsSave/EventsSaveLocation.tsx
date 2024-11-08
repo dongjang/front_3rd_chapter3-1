@@ -3,6 +3,7 @@ import React from 'react';
 
 interface EventsSaveLocationProps {
   location: string;
+  // eslint-disable-next-line
   setLocation: (value: React.SetStateAction<string>) => void;
 }
 

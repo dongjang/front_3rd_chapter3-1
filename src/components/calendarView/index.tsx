@@ -8,6 +8,7 @@ import { Event } from '../../types';
 
 interface CalendarViewProps {
   events: Event[];
+  // eslint-disable-next-line
   navigate: (direction: 'prev' | 'next') => void;
   view: 'week' | 'month';
   setView: React.Dispatch<React.SetStateAction<'week' | 'month'>>;

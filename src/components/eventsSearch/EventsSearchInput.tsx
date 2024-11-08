@@ -2,6 +2,7 @@ import { FormControl, FormLabel, Input } from '@chakra-ui/react';
 import React from 'react';
 interface EventsSearchInputProps {
   searchTerm: string;
+  // eslint-disable-next-line
   setSearchTerm: (value: React.SetStateAction<string>) => void;
 }
 

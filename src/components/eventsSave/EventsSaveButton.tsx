@@ -1,8 +1,6 @@
 import { Button } from '@chakra-ui/react';
-import React from 'react';
 
-import { useOverlap } from '../../hooks/useOverlap';
-import { Event, EventForm, RepeatType } from '../../types';
+import { Event } from '../../types';
 
 interface EventsSaveButtonProps {
   editingEvent: Event | null;

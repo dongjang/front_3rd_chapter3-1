@@ -7,10 +7,13 @@ import EventsSearchInput from './EventsSearchInput';
 
 interface EventsSearchProps {
   searchTerm: string;
+  // eslint-disable-next-line
   setSearchTerm: (value: React.SetStateAction<string>) => void;
   filteredEvents: Event[];
   notifiedEvents: string[];
+  // eslint-disable-next-line
   editEvent: (event: Event) => void;
+  // eslint-disable-next-line
   deleteEvent: (id: string) => Promise<void>;
 }
 

@@ -3,6 +3,7 @@ import React from 'react';
 
 interface EventsSaveDescriptionProps {
   description: string;
+  // eslint-disable-next-line
   setDescription: (value: React.SetStateAction<string>) => void;
 }
 

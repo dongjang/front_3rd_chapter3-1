@@ -5,6 +5,7 @@ import { notificationOptions } from '../../constants';
 
 interface EventsSaveSettingsProps {
   notificationTime: number;
+  // eslint-disable-next-line
   setNotificationTime: (value: React.SetStateAction<number>) => void;
 }
 const EventsSaveSettings = ({ notificationTime, setNotificationTime }: EventsSaveSettingsProps) => {
