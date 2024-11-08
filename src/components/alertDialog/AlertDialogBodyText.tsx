@@ -9,7 +9,7 @@ interface AlertDialogBodyProps {
 const AlertDialogBodyText = ({ overlappingEvents }: AlertDialogBodyProps) => {
   return (
     <>
-      다음 일정과 겹칩니다 :
+      다음 일정과 겹칩니다:
       {overlappingEvents.map((event) => (
         <Text key={event.id}>
           {event.title} ({event.date} {event.startTime}-{event.endTime})
